@@ -7,7 +7,7 @@ env:
   RELEASE_DATE: 20240430
 permissions:
   id-token: write
-  contents: read
+  contents: write
 jobs:
   publish:
     runs-on: ubuntu-latest
