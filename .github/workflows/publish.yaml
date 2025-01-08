@@ -33,6 +33,6 @@ jobs:
           gh release upload --repo ${{ github.repository }} ${{ env.IMMUTA_RELEASE }}-11.x 11.x/$file;
         done
         aws s3 cp s3://${{ env.ARTIFACT_BUCKET }}/hadoop/databricks/${{ env.IMMUTA_RELEASE }}/7.x_8.x_9.x_10.x/immuta-spark-hive-${{ env.IMMUTA_RELEASE}}_${{ env.RELEASE_DATE }}-spark-3.1.1-public.jar 7.x_8.x_9.x_10.x/
-        aws s3 cp s3://${{ env.ARTIFACT_BUCKET }}/hadoop/databricks/${{ env.IMMUTA_RELEASE }}/11.x/immuta-spark-hive-${{ env.IMMUTA_RELEASE}}_${{ env.RELEASE_DATE }}-spark-3.3.1-public.jar 11.x/
+        aws s3 cp s3://${{ env.ARTIFACT_BUCKET }}/hadoop/databricks/${{ env.IMMUTA_RELEASE }}/11.x/immuta-spark-hive-${{ env.IMMUTA_RELEASE}}_${{ env.RELEASE_DATE }}-spark-3.3.0-public.jar 11.x/
         gh release upload --repo ${{ github.repository }} ${{ env.IMMUTA_RELEASE }}-7.x_8.x_9.x_10.x "7.x_8.x_9.x_10.x/immuta-spark-hive-${{ env.IMMUTA_RELEASE}}_${{ env.RELEASE_DATE }}-spark-3.1.1-public.jar";
         gh release upload --repo ${{ github.repository }} ${{ env.IMMUTA_RELEASE }}-11.x "11.x/immuta-spark-hive-${{ env.IMMUTA_RELEASE }}_${{ env.RELEASE_DATE }}-spark-3.3.0-public.jar";
