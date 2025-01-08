@@ -20,7 +20,7 @@ jobs:
         aws-region: us-east-1
         role-to-assume: arn:aws:iam::931788537711:role/github-actions
     - name: Login to Github CLI (necessary?)
-      run: gh auth login --with-token ${{ secrets.GITHUB_TOKEN }}
+      run: echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --with-token
     - name: Download files from s3
       run: |
         gh release create --repo ${{ github.repository }} ${{ env.IMMUTA_RELEASE }} --notes ""
