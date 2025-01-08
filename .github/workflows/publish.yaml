@@ -5,7 +5,6 @@ env:
   ARTIFACT_BUCKET: immuta-platform-artiacts
   IMMUTA_RELEASE: 2024.2.0
   RELEASE_DATE: 20240430
-  GH_TOKEN: ${{ github.token }}
 permissions:
   id-token: write
   contents: read
@@ -20,6 +19,8 @@ jobs:
       with:
         aws-region: us-east-1
         role-to-assume: arn:aws:iam::931788537711:role/github-actions
+    - name: Login to Github CLI (necessary?)
+      run: gh auth login --with-token ${{ secrets.GITHUB_TOKEN }}
     - name: Download files from s3
       run: |
         gh release create --repo ${{ github.repository }} ${{ env.IMMUTA_RELEASE }} --notes ""
