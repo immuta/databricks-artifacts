@@ -5,6 +5,7 @@ env:
   ARTIFACT_BUCKET: immuta-platform-artiacts
   IMMUTA_RELEASE: 2024.2.0
   RELEASE_DATE: 20240430
+  GH_TOKEN: ${{ github.token }}
 permissions:
   id-token: write
   contents: read
