@@ -22,15 +22,15 @@ jobs:
         role-to-assume: arn:aws:iam::931788537711:role/github-actions
     - name: Download files from s3
       run: |
-        gh release create --repo immuta/databricks-artifacts ${{env.IMMUTA_RELEASE}} --notes ""
+        gh release create --repo ${github.repository} ${{env.IMMUTA_RELEASE}} --notes ""
         mkdir -p 11.x 7.x_8.x_9.x_10.x
         for file in allowedCallingClasses.json get_unity_token.py immuta-benchmark-suite.dbc immuta-validation.py immuta_cluster_init_script.sh immuta_cluster_init_script_proxy.sh obscuredCommands.yaml; do
-          aws s3 cp s3://immuta-platform-artifacts/hadoop/databricks/${{env.IMMUTA_RELEASE}}/7.x_8.x_9.x_10.x/$file 7.x_8.x_9.x_10.x/;
-          aws s3 cp s3://immuta-platform-artifacts/hadoop/databricks/${{env.IMMUTA_RELEASE}}/11.x/$file 11.x/;
-          gh release upload --repo immuta/databricks-artifacts ${{env.IMMUTA_RELEASE}} "7.x_8.x_9.x_10.x/$file#7.x_8.x_9.x_10.x/$file";
-          gh release upload --repo immuta/databricks-artifacts ${{env.IMMUTA_RELEASE}} "11.x/$file#11.x/$file";
+          aws s3 cp s3://${{env.ARTIFACT_BUCKET}}/hadoop/databricks/${{env.IMMUTA_RELEASE}}/7.x_8.x_9.x_10.x/$file 7.x_8.x_9.x_10.x/;
+          aws s3 cp s3://${{env.ARTIFACT_BUCKET}}/hadoop/databricks/${{env.IMMUTA_RELEASE}}/11.x/$file 11.x/;
+          gh release upload --repo ${github.repository} ${{env.IMMUTA_RELEASE}} "7.x_8.x_9.x_10.x/$file#7.x_8.x_9.x_10.x/$file";
+          gh release upload --repo ${github.repository} ${{env.IMMUTA_RELEASE}} "11.x/$file#11.x/$file";
         done
-        aws s3 cp s3://immuta-platform-artifacts/hadoop/databricks/${{env.IMMUTA_RELEASE}}/7.x_8.x_9.x_10.x/immuta-spark-hive-${{env.IMMUTA_RELEASE}}_${{env.RELEASE_DATE}}-spark-3.1.1-public.jar 7.x_8.x_9.x_10.x/
-        aws s3 cp s3://immuta-platform-artifacts/hadoop/databricks/${{env.IMMUTA_RELEASE}}/11.x/immuta-spark-hive-${{env.IMMUTA_RELEASE}}_${{env.RELEASE_DATE}}-spark-3.3.1-public.jar 11.x/
-        gh release upload --repo immuta/databricks-artifacts ${{env.IMMUTA_RELEASE}} "7.x_8.x_9.x_10.x/immuta-spark-hive-${{env.IMMUTA_RELEASE}}_${{env.RELEASE_DATE}}-spark-3.1.1-public.jar#7.x_8.x_9.x_10.x/immuta-spark-hive-${{env.IMMUTA_RELEASE}}_${{env.RELEASE_DATE}}-spark-3.1.1-public.jar";
-        gh release upload --repo immuta/databricks-artifacts ${{env.IMMUTA_RELEASE}} "11.x/immuta-spark-hive-${{env.IMMUTA_RELEASE}}_${{env.RELEASE_DATE}}-spark-3.3.0-public.jar#11.x/immuta-spark-hive-${{env.IMMUTA_RELEASE}}_${{env.RELEASE_DATE}}-spark-3.3.0-public.jar";
+        aws s3 cp s3://${{env.ARTIFACT_BUCKET}}/hadoop/databricks/${{env.IMMUTA_RELEASE}}/7.x_8.x_9.x_10.x/immuta-spark-hive-${{env.IMMUTA_RELEASE}}_${{env.RELEASE_DATE}}-spark-3.1.1-public.jar 7.x_8.x_9.x_10.x/
+        aws s3 cp s3://${{env.ARTIFACT_BUCKET}}/hadoop/databricks/${{env.IMMUTA_RELEASE}}/11.x/immuta-spark-hive-${{env.IMMUTA_RELEASE}}_${{env.RELEASE_DATE}}-spark-3.3.1-public.jar 11.x/
+        gh release upload --repo ${github.repository} ${{env.IMMUTA_RELEASE}} "7.x_8.x_9.x_10.x/immuta-spark-hive-${{env.IMMUTA_RELEASE}}_${{env.RELEASE_DATE}}-spark-3.1.1-public.jar#7.x_8.x_9.x_10.x/immuta-spark-hive-${{env.IMMUTA_RELEASE}}_${{env.RELEASE_DATE}}-spark-3.1.1-public.jar";
+        gh release upload --repo ${github.repository} ${{env.IMMUTA_RELEASE}} "11.x/immuta-spark-hive-${{env.IMMUTA_RELEASE}}_${{env.RELEASE_DATE}}-spark-3.3.0-public.jar#11.x/immuta-spark-hive-${{env.IMMUTA_RELEASE}}_${{env.RELEASE_DATE}}-spark-3.3.0-public.jar";
