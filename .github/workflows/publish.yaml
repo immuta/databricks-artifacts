@@ -1,10 +1,11 @@
 name: Databricks artifacts publisher
 on:
   workflow_dispatch:
+  push:
 env:
   ARTIFACT_BUCKET: immuta-platform-artifacts
-  IMMUTA_RELEASE: 2024.2.1
-  RELEASE_DATE: 20240606
+  IMMUTA_RELEASE: 2024.1.9
+  RELEASE_DATE: 20240513
   GH_TOKEN: ${{ github.token }}
 permissions:
   id-token: write
