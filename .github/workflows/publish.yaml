@@ -4,9 +4,9 @@ on:
   push:
 env:
   ARTIFACT_BUCKET: immuta-release-artifacts
-  IMMUTA_RELEASE: 2024.2.7
-  RELEASE_DATE: 20240926
-  BUILD_NUMBER: 376
+  IMMUTA_RELEASE: 2024.2.8
+  RELEASE_DATE: 20240927
+  BUILD_NUMBER: 379
   GH_TOKEN: ${{ github.token }}
 permissions:
   id-token: write
